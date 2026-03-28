@@ -5,29 +5,37 @@ from portsight.resolver import TargetResolver
 from portsight.services import ServiceDetector
 
 def test_port_parsing_single():
+    """Test parsing a single port."""
     assert CLI.parse_ports("80") == [80]
 
 def test_port_parsing_multiple():
+    """Test parsing comma-separated ports."""
     assert CLI.parse_ports("80,443,22") == [22, 80, 443]
 
 def test_port_parsing_range():
+    """Test parsing a port range."""
     assert CLI.parse_ports("20-25") == [20, 21, 22, 23, 24, 25]
 
 def test_port_parsing_complex():
+    """Test parsing complex port strings."""
     assert CLI.parse_ports("80, 443, 20-22") == [20, 21, 22, 80, 443]
 
 def test_port_parsing_invalid():
+    """Test handling invalid port strings."""
     assert CLI.parse_ports("abc") == []
 
 def test_resolver_validation():
+    """Test basic resolver logic."""
     assert TargetResolver.resolve("127.0.0.1") == "127.0.0.1"
 
 def test_service_lookup():
+    """Test IANA service lookups."""
     assert ServiceDetector.get_service_name(80) == "HTTP"
     assert ServiceDetector.get_service_name(22) == "SSH"
     assert ServiceDetector.get_service_name(443) == "HTTPS"
 
 def test_comparison_logic():
+    """Test differential scan comparison."""
     old = [{"port": 80, "status": "open"}]
     new = [{"port": 80, "status": "open"}, {"port": 443, "status": "open"}]
     
@@ -40,6 +48,7 @@ def test_comparison_logic():
     assert p443["change"] == "OPENED"
 
 def test_comparison_logic_closed():
+    """Test detection of closed ports."""
     old = [{"port": 22, "status": "open"}]
     new = []
     
