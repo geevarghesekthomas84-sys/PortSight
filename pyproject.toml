@@ -17,4 +17,5 @@ dependencies = [
 portsight = "main:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["portsight", "main.py"]
+packages = ["portsight"]
+include = ["main.py"]
