@@ -22,4 +22,7 @@ jobs:
 
     - name: Run tests
       run: |
-        PYTHONPATH=. python -m pytest
+        ls -R
+        pip list
+        PYTHONPATH=. python -c "import portsight; print('Import Success:', portsight.__file__)"
+        PYTHONPATH=. python -m pytest -v
