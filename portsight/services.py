@@ -1,5 +1,5 @@
 import socket
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 
 class ServiceDetector:
     """Service detection and banner grabbing for PortSight."""
