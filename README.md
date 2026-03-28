@@ -2,7 +2,7 @@
 
 **A high-speed, multithreaded network reconnaissance tool for rapid discovery and differential port analysis.**
 
-[![PortSight Tests](https://github.com/yourusername/PortSight/actions/workflows/tests.yml/badge.svg)](https://github.com/yourusername/PortSight/actions/workflows/tests.yml)
+[![PortSight Tests](https://github.com/geevarghesekthomas84-sys/PortSight/actions/workflows/tests.yml/badge.svg)](https://github.com/geevarghesekthomas84-sys/PortSight/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
@@ -80,7 +80,7 @@ graph TD
 ### Installation (Global CLI)
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/PortSight.git
+git clone https://github.com/geevarghesekthomas84-sys/PortSight.git
 cd PortSight
 
 # Install as a global tool
