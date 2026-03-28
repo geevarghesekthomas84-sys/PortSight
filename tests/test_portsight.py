@@ -1,4 +1,5 @@
 import pytest
+from portsight.scanner import PortScanner
 from portsight.cli import CommandLineInterface as CLI
 from portsight.resolver import TargetResolver
 from portsight.services import ServiceDetector
@@ -16,11 +17,9 @@ def test_port_parsing_complex():
     assert CLI.parse_ports("80, 443, 20-22") == [20, 21, 22, 80, 443]
 
 def test_port_parsing_invalid():
-    # Should handle invalid gracefully (returning empty or valid parts)
     assert CLI.parse_ports("abc") == []
 
 def test_resolver_validation():
-    # Test local resolution if possible, or just validation logic
     assert TargetResolver.resolve("127.0.0.1") == "127.0.0.1"
 
 def test_service_lookup():
@@ -34,11 +33,9 @@ def test_comparison_logic():
     
     comp = PortScanner.compare_results(old, new)
     
-    # Port 80 should be persistent
     p80 = next(r for r in comp if r["port"] == 80)
     assert p80["change"] == "PERSISTENT"
     
-    # Port 443 should be opened
     p443 = next(r for r in comp if r["port"] == 443)
     assert p443["change"] == "OPENED"
 
@@ -48,9 +45,6 @@ def test_comparison_logic_closed():
     
     comp = PortScanner.compare_results(old, new)
     
-    # Port 22 should be closed
     p22 = next(r for r in comp if r["port"] == 22)
     assert p22["change"] == "CLOSED"
     assert p22["status"] == "closed"
-
-from portsight.scanner import PortScanner
